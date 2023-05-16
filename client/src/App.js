@@ -5,6 +5,7 @@ import HomePage from "./Pages/homepage";
 import LoginPage from "./Pages/loginpage";
 import SignUp from "./Pages/signup";
 import { UserContextProvider } from "./userContext";
+import CreatePost from "./Pages/createpost";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/create" element={<CreatePost />} />
         </Route>
       </Routes>
     </UserContextProvider>
