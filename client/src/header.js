@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "./userContext";
 
@@ -25,7 +25,7 @@ export default function Header() {
   }
 
   const username =userInfo?.username;
-  
+
   return (
     <header>
       <Link to="/" className="logo">
