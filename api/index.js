@@ -1,10 +1,10 @@
 const express = require("express");
+const app = express(); //instantiating the express class
 const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user");
 const Post = require("./models/post");
 const bcrypt = require("bcryptjs");
-const app = express(); //instantiating the express class
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const multer = require("multer");
@@ -38,6 +38,7 @@ app.post("/signup", async (req, res) => {
   }
 });
 
+// Login Details Page
 app.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const userDoc = await User.findOne({ username });
@@ -56,6 +57,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
+//Page after login
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
@@ -67,6 +69,7 @@ app.get("/profile", (req, res) => {
 app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
 });
+
 
 //CREATE NEW POST
 app.post("/post", upload.single("file"), async (req, res) => {
