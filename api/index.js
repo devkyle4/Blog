@@ -17,6 +17,7 @@ const secret = "wertyuiQWAsfgmmnb2345ygcvghn";
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 mongoose
   .connect(
@@ -103,5 +104,11 @@ app.get("/post", async (req, res) => {
       .limit(20)
   );
 });
+
+app.get("/post/:id", async (req, res) => {
+  const { id } = req.params;
+  const postDoc = await Post.findById(id).populate('author',['username']);
+  res.json(postDoc)
+})
 
 app.listen(4000);

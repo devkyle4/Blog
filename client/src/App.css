@@ -11,7 +11,7 @@ img{
 
 main{
   padding: 10px;
-  max-width: 700px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -41,9 +41,15 @@ header nav{
 
 div.post{
   display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
+  grid-template-columns: 1fr;
   margin-bottom: 30px;
   justify-items: center;
+}
+
+@media screen and (min-width:700px) {
+  div.post{
+  grid-template-columns: .9fr 1.1fr;
+  }
 }
 
 div.post div.image{
@@ -73,6 +79,61 @@ div.post div.text p.summary{
   line-height: 1.4rem;
 }
 
+div.post div.text a{
+  text-decoration: none;
+  color: inherit;
+}
+
+
+div.post-page div.image{
+  max-height: 400px;
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+div.post-page div.image img{
+  object-fit: fill;
+  object-position: center center;
+}
+
+div.post-page h1{
+  text-align: center;
+  margin: 10px 0 5px;
+}
+
+div.post-page time,.author{
+  color:rgba(96, 95, 95,0.7);
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+div.post-page p{
+  font-size: 20px;
+}
+
+div.edit{
+  text-align: center;
+}
+
+a.edit-btn{
+  background-color: #d40b0b;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+div.post-page svg{
+  height: 20px;
+}
 form.login, form.signup{
   max-width: 400px;
   margin: 0 auto;  
