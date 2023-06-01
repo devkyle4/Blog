@@ -17,7 +17,7 @@ const secret = "wertyuiQWAsfgmmnb2345ygcvghn";
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
-app.use('/uploads', express.static(__dirname + '/uploads'));
+app.use("/uploads", express.static(__dirname + "/uploads"));
 
 mongoose
   .connect(
@@ -71,7 +71,6 @@ app.post("/logout", (req, res) => {
   res.cookie("token", "").json("ok");
 });
 
-
 //CREATE NEW POST
 app.post("/post", upload.single("file"), async (req, res) => {
   const { originalname, path } = req.file;
@@ -96,6 +95,29 @@ app.post("/post", upload.single("file"), async (req, res) => {
   });
 });
 
+app.put("/post", upload.single("file"), async (req, res) => {
+  let newPath = null;
+  if (req.file) {
+    const { originalname, path } = req.file;
+    const parts = originalname.split(".");
+    const ext = parts[parts.length - 1];
+    newPath = path + "." + ext;
+
+    fs.renameSync(path, newPath);
+  }
+
+  const { token } = req.cookies;
+
+  jwt.verify(token, secret, {}, async (err, info) => {
+    if (err) throw err;
+
+    const { id, title, summary, content } = req.body;
+    const postDoc = await Post.findById(id);
+    const isAuthor = postDoc._id === info.id;
+    res.json(isAuthor, postDoc, info);
+  });
+});
+
 app.get("/post", async (req, res) => {
   res.json(
     await Post.find()
@@ -107,8 +129,8 @@ app.get("/post", async (req, res) => {
 
 app.get("/post/:id", async (req, res) => {
   const { id } = req.params;
-  const postDoc = await Post.findById(id).populate('author',['username']);
-  res.json(postDoc)
-})
+  const postDoc = await Post.findById(id).populate("author", ["username"]);
+  res.json(postDoc);
+});
 
 app.listen(4000);
