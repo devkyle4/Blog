@@ -41,7 +41,8 @@ header nav{
 
 div.post{
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  /* grid-template-columns: 1fr; */
   margin-bottom: 30px;
   justify-items: center;
 }
@@ -53,7 +54,25 @@ div.post{
 }
 
 div.post div.image{
+  display: flex;
   width: 80%;
+}
+
+div.post div.image a {
+  display: flex;
+  width: 300px;
+  height: 200px;
+}
+
+div.post div.image .post-img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   
+}
+
+div.post div.text{
+  width: 100%;
+  
 }
 
 div.post div.text h2{
