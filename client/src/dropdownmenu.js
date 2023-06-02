@@ -1,14 +1,17 @@
+import { react, useState } from "react";
 import portrait from "./assets/img/mypic.jpg";
 import { Icons } from "./icons/icons";
 
 export default function DropDownMenu() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="menu-container">
-      <div className="menu-trigger">
-        <img src={portrait} alt="" />
+      <div className="menu-trigger" onClick={() => setOpen(!open)}>
+              <img src={portrait} alt="" />
+              <span className="arrow-down">{<Icons.arrowdown />}</span>
       </div>
 
-      <div className="dropdown-menu">
+      <div className={`dropdown-menu ${open ? "active" : "inactive"}`}>
         <h3>Evans Kyle</h3>
         <span></span>
         <ul>

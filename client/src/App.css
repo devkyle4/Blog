@@ -15,10 +15,10 @@ main{
   margin: 0 auto;
 }
 
-
+/*HEADER*/
 header{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-top: 20px;
   margin-bottom: 50px;
   align-items: center;
@@ -32,13 +32,27 @@ header a{
 header a.logo{
   font-weight: bold;
   font-size: 1.5rem;
+  position: absolute;
+  left: 10px;
 }
 
 header nav{
-  display: flex;
-  gap: 15px;
+  position: absolute;
+  right: 80px;
 }
 
+header nav .write_signout{
+  display: flex;
+  gap: 10px;
+  margin-right: 50px;
+  font-weight: 500;
+}
+
+.write_signout a:hover{
+  cursor: pointer;
+}
+
+/*POST*/
 div.post{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -182,27 +196,32 @@ form.login h1, form.signup h1{
   text-align: center;
 }
 
+/*DROPDOWN MENU*/
 .menu-trigger img{
   position: absolute;
-  top: 20px;
-  right: 20px;
-  height: 50px;
-  width: 50px;
+  top: -5px;
+  right: -50px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   overflow: hidden;
-  cursor: pointer;
 } 
+
+.menu-trigger:hover{
+  cursor: pointer;
+}
 
 .menu-container .dropdown-menu{
   position: absolute;
-  top: 100px;
-  right: 20px;
+  top: 30px;
+  right: -50px;
   background-color: #fff;
   border-radius: 5px;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
   width: 200px;
   border: 1px solid rgb(214, 214, 214);
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  /* text-align: center; */
 }
 
 .dropdown-menu::before{
@@ -226,10 +245,9 @@ form.login h1, form.signup h1{
 }
 
 .dropdown-menu ul{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: inline-block;
 }
+
 .dropdown-menu ul li{
   display: flex;
   align-items: center;
@@ -238,23 +256,28 @@ form.login h1, form.signup h1{
   list-style: none;
   white-space: nowrap;
   overflow: visible;
+  color: #888;
 }
 
 .dropdown-menu ul li:hover a{
-  color: red;
+  color: black;
   cursor: pointer;
 }
 
 .dropdown-menu ul li:hover svg{
-  
   opacity: 1;
   cursor: pointer;
 }
 
-.dropdownItem{
-  
+.menu-container .inactive{
+  visibility: hidden;
+  opacity: 0;
 }
 
+.menu-container .active {
+  opacity: 1;
+
+}
 .dropdown-menu svg{
   width: 20px;
   margin-top: 5px;
@@ -266,6 +289,13 @@ form.login h1, form.signup h1{
   max-width: 100px;
   margin-left: 5px;
   transition: 500ms;
+}
+
+.arrow-down svg{
+  width: 10px;
+  height: 10px;
+  position: relative;
+  left: 115px;
 }
 
 

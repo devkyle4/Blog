@@ -35,11 +35,11 @@ export default function Header() {
       </Link>
       <nav>
         {username && (
-          <>
+          <div className="write_signout">
             <Link to="/create">Write</Link>
             <a onClick={logout}>Sign Out</a>
             <DropDownMenu/>
-          </>
+          </div>
         )}
         {!username && (
           <>
