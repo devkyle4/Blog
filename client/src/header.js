@@ -3,6 +3,7 @@
 import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "./userContext";
+import DropDownMenu from './dropdownmenu'
 
 export default function Header() {
   const { setUserInfo,userInfo } = useContext(UserContext);
@@ -35,13 +36,14 @@ export default function Header() {
       <nav>
         {username && (
           <>
-            <Link to="/create">Create New Post</Link>
-            <a onClick={logout}>Logout</a>
+            <Link to="/create">Write</Link>
+            <a onClick={logout}>Sign Out</a>
+            <DropDownMenu/>
           </>
         )}
         {!username && (
           <>
-            <Link to="/login">Login</Link>
+            <Link to="/login">Sign In</Link>
             <Link to="/signup">Register</Link>
           </>
         )}
